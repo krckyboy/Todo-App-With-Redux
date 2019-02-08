@@ -1,41 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addGoalAction, removeGoalAction } from "../redux/actions"; // action
-import { generateId } from "../utils/util";
-import { API } from "../utils/fakeServer";
+import { handleAddGoalAction, handleRemoveGoalAction } from "../redux/actions"; // action
 
 class Goals extends Component {
   addGoal = e => {
     e.preventDefault();
     const { dispatch } = this.props;
     const text = this.input.value;
-
     if (!text.trim()) {
-      return;
+      return this.resetInput();
     }
-
-    return API.saveGoal(text)
-      .then(goal => {
-        dispatch(
-          addGoalAction({
-            ...goal
-          })
-        );
-        this.resetInput();
-      })
-      .catch(() => {
-        alert("Something went wrong!");
-      });
+    dispatch(handleAddGoalAction(text, this.resetInput));
   };
 
   removeGoal = (e, goal) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(removeGoalAction(goal.id));
-    return API.deleteGoal(goal.id).catch(() => {
-      alert("Something went wrong!");
-      dispatch(addGoalAction({ ...goal }));
-    });
+    dispatch(handleRemoveGoalAction(goal));
   };
 
   resetInput = () => {

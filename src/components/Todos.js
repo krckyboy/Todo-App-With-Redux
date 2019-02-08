@@ -1,56 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  addTodoAction,
-  removeTodoAction,
+  handleAddTodoAction,
   handleRemoveTodoAction,
-  toggleTodoAction
+  handleToggleTodoAction
 } from "../redux/actions";
-import { generateId } from "../utils/util";
-import { API } from "../utils/fakeServer";
 
 class Todos extends Component {
   addItem = e => {
     e.preventDefault();
     const { dispatch } = this.props;
     const text = this.input.value;
-
-    if (!this.input.value.trim()) {
-      return;
+    if (!text.trim()) {
+      return this.resetInput();
     }
-
-    return API.saveTodo(text)
-      .then(todo => {
-        dispatch(
-          addTodoAction({
-            ...todo
-          })
-        );
-        this.resetInput();
-      })
-      .catch(() => {
-        alert("Something went wrong!");
-      });
-  };
-
-  resetInput = () => {
-    this.input.focus();
-    this.input.value = "";
+    dispatch(handleAddTodoAction(text, this.resetInput));
   };
 
   toggleTodo = id => {
     const { dispatch } = this.props;
-    dispatch(toggleTodoAction(id));
-    API.saveTodoToggle(id).catch(() => {
-      alert("Something went wrong!");
-      dispatch(toggleTodoAction(id));
-    });
+    dispatch(handleToggleTodoAction(id));
   };
 
   removeTodo = (e, todo) => {
     e.preventDefault();
     const { dispatch } = this.props;
     dispatch(handleRemoveTodoAction(todo));
+  };
+
+  resetInput = () => {
+    this.input.focus();
+    this.input.value = "";
   };
 
   render() {

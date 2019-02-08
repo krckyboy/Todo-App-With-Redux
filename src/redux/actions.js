@@ -16,9 +16,75 @@ export function addTodoAction(todo) {
     todo
   };
 }
+
 export function removeTodoAction(id) {
   return {
     type: REMOVE_TODO,
+    id
+  };
+}
+
+export function toggleTodoAction(id) {
+  return {
+    type: TOGGLE_TODO,
+    id
+  };
+}
+
+export function handleToggleTodoAction(id) {
+  return dispatch => {
+    dispatch(toggleTodoAction(id));
+    return API.saveTodoToggle(id).catch(() => {
+      alert("Something went wrong!");
+      dispatch(toggleTodoAction(id));
+    });
+  };
+}
+
+export function addGoalAction(goal) {
+  return {
+    type: ADD_GOAL,
+    goal
+  };
+}
+
+export function handleAddTodoAction(text, inputReset) {
+  return dispatch => {
+    return API.saveTodo(text)
+      .then(todo => {
+        dispatch(
+          addTodoAction({
+            ...todo
+          })
+        );
+        inputReset();
+      })
+      .catch(() => {
+        alert("Something went wrong!");
+      });
+  };
+}
+
+export function handleAddGoalAction(text, inputReset) {
+  return dispatch => {
+    return API.saveGoal(text)
+      .then(goal => {
+        dispatch(
+          addGoalAction({
+            ...goal
+          })
+        );
+        inputReset();
+      })
+      .catch(() => {
+        alert("Something went wrong!");
+      });
+  };
+}
+
+export function removeGoalAction(id) {
+  return {
+    type: REMOVE_GOAL,
     id
   };
 }
@@ -37,25 +103,16 @@ export function handleRemoveTodoAction(todo) {
   };
 }
 
-export function toggleTodoAction(id) {
-  return {
-    type: TOGGLE_TODO,
-    id
+export function handleRemoveGoalAction(goal) {
+  return dispatch => {
+    dispatch(removeGoalAction(goal.id));
+    return API.deleteGoal(goal.id).catch(() => {
+      alert("Something went wrong!");
+      dispatch(addGoalAction({ ...goal }));
+    });
   };
 }
 
-export function addGoalAction(goal) {
-  return {
-    type: ADD_GOAL,
-    goal
-  };
-}
-export function removeGoalAction(id) {
-  return {
-    type: REMOVE_GOAL,
-    id
-  };
-}
 export function receiveDataAction(todos, goals) {
   return {
     type: RECEIVE_DATA,
