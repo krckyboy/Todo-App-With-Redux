@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Todos from "./Todos";
 import Goals from "./Goals";
-import { API } from "../utils/fakeServer";
-import { receiveDataAction } from "../redux/actions";
+import { handleReceiveDataAction } from "../redux/actions";
 
 class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    Promise.all([API.fetchTodos(), API.fetchGoals()]).then(([todos, goals]) => {
-      dispatch(receiveDataAction(todos, goals));
-    });
+    dispatch(handleReceiveDataAction());
   }
 
   render() {
