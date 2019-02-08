@@ -4,11 +4,19 @@
 
 .del {
   background-color: transparent;
-  border: 1px #ff0000 solid;
+  border: 1px #ff3434 solid;
   margin: 3px;
-  color: #ff0000;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
+  color: #ff3434;
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid gainsboro;
+  padding: 2px;
+  text-transform: uppercase;
+  margin: 3px;
+  color: #575757;
   cursor: pointer;
 }
 
@@ -23,4 +31,18 @@ li span {
 
 .items li:hover button {
   opacity: 1;
+}
+.App {
+  color: #575757;
+}
+
+html {
+  height: 100%;
+  background-color: #ebebeb;
+}
+
+.goals,
+.todos {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

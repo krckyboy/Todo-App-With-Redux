@@ -35,7 +35,7 @@ class Todos extends Component {
 
   render() {
     return (
-      <div>
+      <div className="todos">
         <h2>Todos</h2>
         <form onSubmit={this.addItem}>
           <input

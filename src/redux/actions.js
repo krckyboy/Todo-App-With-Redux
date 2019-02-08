@@ -130,5 +130,3 @@ export function handleReceiveDataAction() {
     );
   };
 }
-
-// We need one for receiving data (goals and todos at once)

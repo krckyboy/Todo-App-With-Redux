@@ -26,7 +26,7 @@ class Goals extends Component {
 
   render() {
     return (
-      <div>
+      <div className="goals">
         <h2>Goals</h2>
         <form onSubmit={this.addGoal}>
           <input
