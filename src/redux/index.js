@@ -1,5 +1,6 @@
 import { combineReducers, applyMiddleware, createStore, compose } from "redux";
 import { todos, goals, loading } from "./reducers";
+import thunk from "redux-thunk";
 
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
@@ -31,12 +32,12 @@ const checker = store => next => action => {
   return next(action);
 };
 
-const thunk = store => next => action => {
-  if (typeof action === "function") {
-    action(store.dispatch);
-  }
-  return next(action);
-};
+// const thunk = store => next => action => {
+//   if (typeof action === "function") {
+//     action(store.dispatch);
+//   }
+//   return next(action);
+// };
 
 export const store = createStore(
   allReducers,
