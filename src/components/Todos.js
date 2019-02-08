@@ -4,7 +4,7 @@ import {
   handleAddTodoAction,
   handleRemoveTodoAction,
   handleToggleTodoAction
-} from "../redux/actions";
+} from "../actions/todos";
 
 class Todos extends Component {
   addItem = e => {

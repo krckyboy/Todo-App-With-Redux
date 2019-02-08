@@ -1,4 +1,5 @@
-// Middleware stuff
+import { ADD_TODO, ADD_GOAL } from "../reducers";
+
 const checker = store => next => action => {
   if (
     action.type === ADD_TODO &&

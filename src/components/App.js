@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Todos from "./Todos";
 import Goals from "./Goals";
-import { handleReceiveDataAction } from "../redux/actions";
+import { handleReceiveDataAction } from "../actions/shared";
 
 class App extends Component {
   componentDidMount() {
@@ -14,6 +14,7 @@ class App extends Component {
     if (this.props.loading) {
       return <h2>Loading</h2>;
     }
+
     return (
       <div className="App">
         <h1>Todo app with Redux</h1>

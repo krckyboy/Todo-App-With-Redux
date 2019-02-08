@@ -1,5 +1,6 @@
-import { RECEIVE_DATA } from "./index";
 import { API } from "../utils/fakeServer";
+
+export const RECEIVE_DATA = "RECEIVE_DATA";
 
 export function receiveDataAction(todos, goals) {
   return {

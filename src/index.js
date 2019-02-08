@@ -1,14 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./styles.css";
 import { Provider } from "react-redux";
-import { store } from "./redux/index";
+import { createStore, compose } from "redux";
+import reducer from "./reducers";
+import middleware from "./middleware";
 import App from "./components/App";
 
-const rootElement = document.getElementById("root");
+const store = createStore(
+  reducer,
+  compose(
+    middleware,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  rootElement
+  document.getElementById("root")
 );

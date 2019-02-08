@@ -1,6 +1,8 @@
-import { ADD_GOAL, REMOVE_GOAL } from "./index";
-
 import { API } from "../utils/fakeServer";
+
+export const ADD_GOAL = "ADD_GOAL";
+export const REMOVE_GOAL = "REMOVE_GOAL";
+export const RECEIVE_DATA = "RECEIVE_DATA";
 
 export function addGoalAction(goal) {
   return {

@@ -1,8 +1,5 @@
 import checker from "./checker";
-import { combineReducers, applyMiddleware, createStore, compose } from "redux";
-import { todos } from "./todos";
-import { goals } from "./goals";
-import { loading } from "./loading";
+import { applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 export default applyMiddleware(thunk, checker);

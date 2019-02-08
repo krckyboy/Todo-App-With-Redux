@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleAddGoalAction, handleRemoveGoalAction } from "../redux/actions"; // action
+import { handleAddGoalAction, handleRemoveGoalAction } from "../actions/goals"; // action
 
 class Goals extends Component {
   addGoal = e => {

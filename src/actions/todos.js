@@ -1,5 +1,8 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "./index";
 import { API } from "../utils/fakeServer";
+
+export const ADD_TODO = "ADD_TODO";
+export const REMOVE_TODO = "REMOVE_TODO";
+export const TOGGLE_TODO = "TOGGLE_TODO";
 
 // Action creators
 export function addTodoAction(todo) {
